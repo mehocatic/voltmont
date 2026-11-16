@@ -1,0 +1,55 @@
+<div class="flow-experience" [class.is-night]="night()" [class.without-battery]="!storage()">
+  <div class="home-scene">
+    <img class="scene-day" src="assets/cabin-day.webp" width="1586" height="992" loading="lazy" [alt]="t().altDay" [attr.aria-hidden]="night()">
+    <img class="scene-night" src="assets/cabin-night.webp" width="1586" height="992" loading="lazy" [alt]="t().altNight" [attr.aria-hidden]="!night()">
+    <span class="scene-phase" aria-hidden="true">{{ night() ? '☾' : '☀' }}</span>
+    <div class="scene-caption" aria-live="polite"><span>{{ t().source }}</span><strong><i aria-hidden="true"></i>{{ source() }}</strong></div>
+    <span class="photo-note">{{ t().photo }}</span>
+  </div>
+  <div class="flow-copy">
+    <div class="time-switch" role="group" [attr.aria-label]="t().scenario">
+      <span class="switch-indicator" aria-hidden="true"></span>
+      <button type="button" (click)="night.set(false)" [attr.aria-pressed]="!night()"><span aria-hidden="true">☀</span>{{ t().day }}</button>
+      <button type="button" (click)="night.set(true)" [attr.aria-pressed]="night()"><span aria-hidden="true">☾</span>{{ t().night }}</button>
+    </div>
+    <div class="flow-text" aria-live="polite"><h3>{{ title() }}</h3><p>{{ description() }}</p><p class="flow-detail">{{ detail() }}</p></div>
+    <label class="battery-switch"><input #battery type="checkbox" [checked]="storage()" (change)="storage.set(battery.checked)"><span class="switch-track" aria-hidden="true"></span><span>{{ t().storage }}</span></label>
+  </div>
+  <div class="power-map" role="img" [attr.aria-label]="t().diagram">
+    <svg class="wiring desktop-wiring" viewBox="0 0 1000 220" preserveAspectRatio="none" aria-hidden="true">
+      <path class="wire" d="M100 68H500M700 68V151Q700 165 686 165H314Q300 165 300 151V68M900 68V188Q900 202 886 202H514Q500 202 500 188V68"/>
+      <path class="current solar-route" d="M100 68H300"/>
+      <path class="current home-route" d="M300 68H500"/>
+      <path class="current battery-route" d="M300 68V151Q300 165 314 165H686Q700 165 700 151V68"/>
+      <path class="current grid-route" d="M900 68V188Q900 202 886 202H514Q500 202 500 188V68"/>
+    </svg>
+    <svg class="wiring mobile-wiring" viewBox="0 0 1000 280" preserveAspectRatio="none" aria-hidden="true">
+      <path class="wire" d="M167 48H833M500 48V137Q500 148 480 148H353Q333 148 333 160V211M667 211V165Q667 154 687 154H813Q833 154 833 142V48"/>
+      <path class="current solar-route" d="M167 48H500"/>
+      <path class="current home-route" d="M500 48H833"/>
+      <path class="current battery-route" d="M500 48V137Q500 148 480 148H353Q333 148 333 160V211"/>
+      <path class="current grid-route" d="M667 211V165Q667 154 687 154H813Q833 154 833 142V48"/>
+    </svg>
+    <div class="equipment solar-equipment" [class.active]="!night()">
+      <div class="hardware"><svg viewBox="0 0 80 64" aria-hidden="true"><path d="M15 12H65L74 49H6Z M26 12L22 49M40 12V49M54 12L58 49M11 30H69M40 49V58M26 58H54"/></svg><i></i></div>
+      <strong>{{ t().solar }}</strong><span>{{ night() ? t().idle : t().producing }}</span>
+    </div>
+    <div class="equipment inverter-equipment" [class.active]="!night() || storage()">
+      <div class="hardware"><svg viewBox="0 0 80 64" aria-hidden="true"><rect x="19" y="7" width="42" height="49" rx="7"/><path d="M29 23C34 12 39 34 44 23S54 23 54 23M29 41H50M29 46H44"/></svg><i></i></div>
+      <strong>{{ t().inverter }}</strong><span>{{ !night() || storage() ? t().converting : t().idle }}</span>
+    </div>
+    <div class="equipment home-equipment active">
+      <div class="hardware"><svg viewBox="0 0 80 64" aria-hidden="true"><path d="M6 31L40 5L74 31M16 25V57H64V25M32 57V37H48V57M24 13V5H34"/></svg><i></i></div>
+      <strong>{{ t().home }}</strong><span>{{ t().powered }}</span>
+    </div>
+    <div class="equipment battery-equipment" [class.active]="storage()">
+      <div class="hardware"><svg viewBox="0 0 80 64" aria-hidden="true"><rect x="21" y="9" width="38" height="48" rx="6"/><path d="M32 9V4H48V9"/><rect class="battery-fill" x="27" y="29" width="26" height="21" rx="2"/></svg><i></i></div>
+      <strong>{{ t().battery }}</strong><span>{{ storage() ? night() ? t().discharging : t().charging : t().off }}</span>
+    </div>
+    <div class="equipment grid-equipment" [class.active]="night() && !storage()">
+      <div class="hardware"><svg viewBox="0 0 80 64" aria-hidden="true"><path d="M31 6H49L58 57M31 6L22 57M26 38H54M29 21H51M20 14H60M14 25H66M40 6V57M31 57H49"/></svg><i></i></div>
+      <strong>{{ t().grid }}</strong><span>{{ night() && !storage() ? t().supplying : t().idle }}</span>
+    </div>
+  </div>
+  <div class="flow-footer"><p><i aria-hidden="true"></i>{{ t().legend }}</p><small>{{ t().note }}</small></div>
+</div>

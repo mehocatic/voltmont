@@ -1,0 +1,62 @@
+:host{display:block}
+.flow-experience{--glow:#deefa3;background:#1e382d;border:1px solid #ffffff20;border-radius:22px;display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);overflow:hidden;color:#eef4e5;isolation:isolate}
+.home-scene{position:relative;min-height:350px;isolation:isolate;overflow:hidden;background:#2f4436}
+.home-scene img{position:absolute;inset:0;display:block;width:100%;height:100%;object-fit:cover;object-position:55% 45%;transition:opacity .8s ease,transform 1.2s cubic-bezier(.2,.6,.3,1);z-index:-2}
+.home-scene .scene-night{opacity:0}
+.is-night .scene-night{opacity:1}.is-night .scene-day{opacity:0}
+.home-scene:after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,#10281cf5,transparent 70%);z-index:-1}
+.scene-phase{position:absolute;left:24px;top:21px;font-size:24px;display:grid;place-items:center;border-radius:50%;width:45px;height:45px;color:#f1f7d9;background:#16342390;backdrop-filter:blur(10px)}
+.scene-caption{position:absolute;bottom:33px;left:32px;right:20px}
+.scene-caption>span{display:block;font-size:12px;color:#ecf2d9;margin-bottom:8px}
+.scene-caption strong{display:flex;align-items:center;gap:11px;font-size:clamp(24px,2.5vw,38px);font-weight:500;letter-spacing:-.045em;line-height:1.12}
+.scene-caption i{width:8px;height:8px;background:var(--glow);border-radius:50%;flex:none;box-shadow:0 0 0 5px #e0ef9e25;animation:signal-glow 2.5s ease-in-out infinite}
+.photo-note{position:absolute;right:14px;top:16px;font-size:9px;padding:5px 8px;border-radius:3px;background:#173026b8;color:#f1f5e8}
+.flow-copy{padding:clamp(25px,3.1vw,46px);display:flex;flex-direction:column;align-items:flex-start;justify-content:center}
+.time-switch{position:relative;display:flex;gap:4px;padding:4px;border:1px solid #a5b68f50;border-radius:99px;isolation:isolate;margin-bottom:23px}
+.time-switch button{min-width:95px;min-height:40px;padding:0 17px;font-size:14px;display:flex;align-items:center;justify-content:center;gap:8px;color:#dbe4d2;border-radius:99px;transition:color .35s}
+.time-switch button[aria-pressed="true"]{color:#1e3926}
+.time-switch button>span{font-size:19px}
+.switch-indicator{position:absolute;left:4px;top:4px;bottom:4px;width:calc(50% - 6px);background:#deefa3;border-radius:99px;z-index:-1;transition:transform .45s cubic-bezier(.22,.7,.25,1)}
+.is-night .switch-indicator{transform:translateX(calc(100% + 4px))}
+.flow-text h3{font-size:clamp(26px,3vw,43px);letter-spacing:-.05em;font-weight:500;line-height:1.1;max-width:360px;margin-bottom:17px;text-wrap:balance}
+.flow-text p{font-size:14px;line-height:1.6;color:#c5d6c5}
+.flow-text .flow-detail{margin-top:12px;color:#e1ebc8;font-size:13px}
+.battery-switch{position:relative;display:flex;align-items:center;gap:10px;cursor:pointer;font-size:12px;line-height:1.4;margin-top:24px;min-height:28px}
+.battery-switch input{position:absolute;left:0;top:0;opacity:0;width:39px;height:28px;cursor:pointer}
+.switch-track{width:36px;height:21px;background:#586c59;border-radius:99px;border:1px solid #a5b68f60;position:relative;transition:background .3s;flex:none}
+.switch-track:after{content:"";position:absolute;top:3px;left:3px;width:13px;height:13px;border-radius:50%;background:#e8efe2;transition:transform .3s,background .3s}
+input:checked+.switch-track{background:#ddefa2;border-color:#ddefa2}input:checked+.switch-track:after{transform:translateX(15px);background:#284132}
+input:focus-visible+.switch-track{outline:2px solid #ddefa2;outline-offset:5px}
+.power-map{grid-column:1/-1;position:relative;height:210px;border-top:1px solid #ffffff20;background:radial-gradient(ellipse at 50% 0%,#9aaa5310,transparent 65%)}
+.wiring{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
+.mobile-wiring{display:none}
+.wiring path{fill:none;stroke-width:1.4;stroke-linecap:round;vector-effect:non-scaling-stroke}
+.wire{stroke:#8b9e7a45}.current{stroke:var(--glow);stroke-dasharray:3 12;animation:conduct 1.6s linear infinite;filter:drop-shadow(0 0 3px #daeda778)}
+.grid-route{opacity:0;animation:none}
+.is-night .solar-route{opacity:0;animation:none}
+.is-night .battery-route{animation-direction:reverse}
+.without-battery .battery-route{opacity:0;animation:none}
+.is-night.without-battery .home-route{opacity:0;animation:none}
+.is-night.without-battery .grid-route{opacity:1;animation:conduct 1.6s linear infinite}
+.equipment{position:absolute;top:20px;left:10%;transform:translateX(-50%);width:142px;text-align:center}
+.inverter-equipment{left:30%}.home-equipment{left:50%}.battery-equipment{left:70%}.grid-equipment{left:90%}
+.hardware{display:grid;place-items:center;width:88px;height:88px;margin:0 auto 10px;background:linear-gradient(145deg,#364b3d,#1c3429);border:1px solid #8b9e7a55;border-radius:50%;position:relative;box-shadow:0 8px 22px #051b181a;transition:border-color .4s,box-shadow .4s}
+.hardware:before{content:"";position:absolute;inset:5px;border:1px solid #b4c99b14;border-radius:50%}
+.hardware svg{width:47px;height:44px;fill:none;stroke:#a1b392;stroke-width:1.35;stroke-linecap:round;stroke-linejoin:round;transition:stroke .4s}
+.hardware i{position:absolute;top:4px;right:7px;width:8px;height:8px;border-radius:50%;background:#788d74;box-shadow:0 0 0 4px #243d2f}
+.active .hardware{border-color:#d9eba878;box-shadow:0 0 25px #ddefa20a,0 8px 22px #051b181a}.active .hardware svg{stroke:#e0efa9}
+.active .hardware i{background:var(--glow)}
+.equipment strong{display:block;font-size:13px;font-weight:500;line-height:1.2}
+.equipment>span{display:block;font-size:10px;line-height:1.4;color:#b1c4aa;margin-top:5px}
+.active>span{color:#e0efa9}
+.battery-fill{fill:#ddefa270;stroke:none;transform-origin:bottom;animation:charge 3s ease-in-out infinite}
+.is-night .battery-fill{animation-direction:reverse}
+.without-battery .battery-fill{animation:none;fill:#7f947c30}
+.flow-footer{grid-column:1/-1;border-top:1px solid #ffffff15;display:grid;grid-template-columns:1fr 1.3fr;gap:35px;padding:20px 30px;background:#193126}
+.flow-footer p{display:flex;gap:9px;align-items:flex-start;font-size:11px;line-height:1.5;color:#d9e7c7}
+.flow-footer p>i{height:2px;width:23px;background:#deefa3;flex:none;margin-top:7px}
+.flow-footer small{font-size:10px;line-height:1.5;color:#b6c9b2}
+button:focus-visible{outline:2px solid #ddefa2;outline-offset:3px}
+@keyframes conduct{to{stroke-dashoffset:-30}}
+@keyframes charge{0%,100%{transform:scaleY(.4)}50%{transform:scaleY(1)}}
+@keyframes signal-glow{50%{box-shadow:0 0 0 8px #e0ef9e10}}
