@@ -1,0 +1,23 @@
+<details class="enquiry">
+  <summary>{{ t().action }} <span aria-hidden="true">＋</span></summary>
+  <div class="content">
+    <section>
+      <h4>{{ t().estimate }}</h4>
+      <dl>@for (item of specs(); track $index) {
+        <div><dt>{{ item[0] }}</dt><dd>{{ item[1] }}</dd></div>
+      }</dl>
+    </section>
+    <div>
+      <form (input)="prepared.set(false)" (submit)="prepare($event, preview)">
+        <label>{{ t().location }}<input required pattern=".*\S.*" maxlength="120" autocomplete="address-level2" #place (input)="town.set(place.value)"></label>
+        <label>{{ t().contact }}<input required type="email" maxlength="254" autocomplete="email" #address (input)="email.set(address.value)"></label>
+        @if (demo) { <p>{{ t().demo }}</p> }
+        <button type="submit">{{ t().prepare }} <span aria-hidden="true">→</span></button>
+      </form>
+      <div class="draft" [hidden]="!prepared()">
+        <label>{{ t().draft }}<textarea #preview readonly rows="7" [value]="body()" (focus)="preview.select()"></textarea></label>
+        <a [href]="mailto()">{{ t().open }} ↗</a>
+      </div>
+    </div>
+  </div>
+</details>
