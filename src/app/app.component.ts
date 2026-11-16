@@ -1,5 +1,6 @@
 import { AfterViewInit, Component, ElementRef, NgZone, OnDestroy, ViewChild, computed, inject, signal } from '@angular/core';
 import { MobileNavigationComponent } from './mobile-navigation.component';
+import { SiteSectionsComponent } from './site-sections.component';
 
 type Scene = 0 | 1;
 type Uniform = 'R' | 'T' | 'S' | 'K';
@@ -16,7 +17,7 @@ const smooth = (a: number, b: number, value: number): number => {
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [MobileNavigationComponent],
+  imports: [SiteSectionsComponent, MobileNavigationComponent],
   preserveWhitespaces: true,
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
