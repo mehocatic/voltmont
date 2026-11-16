@@ -204,3 +204,54 @@ h1 .l2{color:color-mix(in srgb,#30472f calc((1 - var(--k))*100%),#e4efc5)}
   color:var(--soft)
 }
 
+@media (max-width:820px){
+  .hero{--cluster-top:clamp(110px,calc((100svh - 56.25vw - 300px)/2),210px)}
+  .bar{display:none}
+  .logo{font-size:19px;gap:6px;white-space:nowrap}
+  .logo svg{width:28px;height:28px}
+  .side{flex:0 0 auto;gap:12px}
+  .links,.customers{display:none}
+  .contact{
+    height:40px;
+    font-size:13px;
+    white-space:nowrap
+  }
+  .language{font-size:12px;gap:2px}
+  h1{
+    position:absolute;
+    top:var(--cluster-top);
+    margin-top:0;
+    padding:0 12px;
+    font-size:clamp(28px,8.1vw,52px)
+  }
+  .home{
+    inset:calc(var(--cluster-top) + 76px) 0 auto;
+    width:100%;
+    height:auto;
+    aspect-ratio:16 / 9;
+    -webkit-mask-image:linear-gradient(#000 86%,transparent 100%);
+    mask-image:linear-gradient(#000 86%,transparent 100%)
+  }
+  .home .layer img,.home .cut{
+    object-fit:contain!important;
+    object-position:50% 50%!important
+  }
+  .dock{
+    position:absolute;
+    top:calc(var(--cluster-top) + 56.25vw + 92px);
+    margin-top:0;
+    width:100%;
+    padding:0 16px max(24px,env(safe-area-inset-bottom))
+  }
+  .toggle{
+    width:100%;
+    max-width:440px;
+    height:74px
+  }
+  .toggle b{font-size:19px}
+  .toggle small{font-size:13px}
+  .cap{
+    font-size:14px;
+    max-width:360px
+  }
+}

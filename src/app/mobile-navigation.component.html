@@ -1,0 +1,24 @@
+<header class="mobile-header">
+  <a class="mobile-brand" href="#home" aria-label="Voltmont"><span aria-hidden="true">✳</span>Voltmont</a>
+  <button class="menu-trigger" type="button" (click)="show()" aria-controls="mobile-menu" [attr.aria-expanded]="open()" [attr.aria-label]="bs() ? 'Otvori meni' : 'Open menu'">
+    <span class="burger" aria-hidden="true"><i></i><i></i></span>
+  </button>
+</header>
+<dialog #menu id="mobile-menu" [attr.aria-label]="bs() ? 'Navigacija' : 'Navigation'" (close)="restore()">
+  <div class="menu-top">
+    <a class="mobile-brand" href="#home" (click)="close()"><span aria-hidden="true">✳</span>Voltmont</a>
+    <button class="menu-trigger dismiss" type="button" (click)="close()" [attr.aria-label]="bs() ? 'Zatvori meni' : 'Close menu'"><span class="burger" aria-hidden="true"><i></i><i></i></span></button>
+  </div>
+  <nav [attr.aria-label]="bs() ? 'Glavna navigacija' : 'Main navigation'">
+    @for (link of links(); track link.href; let i=$index) {
+      <a [href]="link.href" (click)="close()" [style.--delay]="i*45+'ms'">{{ link.label }}<span aria-hidden="true">↗</span></a>
+    }
+  </nav>
+  <div class="menu-bottom">
+    <a class="menu-contact" href="#contact" (click)="close()">{{ bs() ? 'Razgovarajmo o vašem krovu' : 'Let’s talk about your roof' }}<span aria-hidden="true">↗</span></a>
+    <div class="menu-language" role="group" aria-label="Jezik / Language">
+      <button type="button" (click)="languageChange.emit('bs')" [attr.aria-pressed]="bs()">Bosanski</button>
+      <button type="button" (click)="languageChange.emit('en')" [attr.aria-pressed]="!bs()">English</button>
+    </div>
+  </div>
+</dialog>
