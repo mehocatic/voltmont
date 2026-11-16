@@ -1,5 +1,19 @@
 <div class="story">
-
+  <section class="energy section" id="how-it-works" aria-labelledby="energy-heading">
+    <div class="shell">
+      <div class="section-top" data-reveal><span class="eyebrow">01 / {{ t().energyTag }}</span><span class="small-orbit" aria-hidden="true">✳</span></div>
+      <div class="intro-grid energy-intro">
+        <h2 id="energy-heading">{{ showFlow() ? t().flowTitle : t().energyTitle }}</h2>
+        <p class="intro-copy">{{ showFlow() ? t().flowIntro : t().energyIntro }}</p>
+      </div>
+      <div class="energy-choices" role="group" [attr.aria-label]="t().energyTag">
+        <button type="button" [attr.aria-pressed]="!showFlow()" aria-controls="estimate-view" (click)="showFlow.set(false)">{{ language() === 'bs' ? 'Solarni kalkulator' : 'Solar calculator' }}</button>
+        <button type="button" [attr.aria-pressed]="showFlow()" aria-controls="flow-view" (click)="showFlow.set(true)">{{ language() === 'bs' ? 'Tok energije' : 'Energy flow' }}</button>
+      </div>
+      <div id="estimate-view" [hidden]="showFlow()"><app-solar-calculator [language]="language()" /></div>
+      <div id="flow-view" [hidden]="!showFlow()"><app-energy-flow [language]="language()" /></div>
+    </div>
+  </section>
 
 
 
