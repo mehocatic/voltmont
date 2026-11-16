@@ -46,3 +46,14 @@
 .method>div{max-width:830px;padding:4px 0 20px;line-height:1.65}
 .method p+p{margin-top:8px}.method small{display:block;color:#b4c6b7;font-size:11px}
 :is(input,select,a,summary):focus-visible{outline:2px solid currentColor;outline-offset:3px}
+@media(max-width:900px){.recommendation{grid-template-columns:1fr 1fr}.reason{grid-column:1/-1}.calculator-grid{grid-template-columns:minmax(0,1fr) minmax(285px,.86fr)}}
+@media(max-width:680px){
+  .calculator-grid{grid-template-columns:minmax(0,1fr);border-radius:16px}
+  .reading{min-height:220px}.reading-content,.controls{padding:22px}.reading img{object-position:55% 40%}
+  .reading-label{font-size:12px}.annual{margin:14px 0 17px}.annual strong{font-size:62px}
+  .controls h3{font-size:27px;margin-bottom:12px}.controls label{font-size:13px}.range-value{font-size:20px}
+  .field+.field{margin-top:7px}.region{margin-top:9px}
+  .recommendation{padding:22px;grid-template-columns:1fr;gap:18px;border-radius:0 0 16px 16px}
+  .sizing{gap:35px}.sizing strong{margin-top:4px}.reason{grid-column:auto}.model h4{font-size:26px}
+}
+@media(prefers-reduced-motion:reduce){*,*::after{transition:none!important}}
