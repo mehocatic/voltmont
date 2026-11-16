@@ -1,0 +1,53 @@
+<div class="journey">
+  <nav class="chapters" [attr.aria-label]="bs() ? 'Koraci ugradnje' : 'Installation stages'">
+    @for (step of steps(); track $index; let i = $index) {
+      <a [href]="'#'+ids[i]" [attr.aria-current]="active()===i ? 'step' : null">
+        <span class="number">0{{ i+1 }}</span><span class="nav-title">{{ step.name }}</span><span class="nav-arrow" aria-hidden="true">↘</span>
+      </a>
+    }
+  </nav>
+  <div class="story-cards">
+    @for (step of steps(); track $index; let i = $index) {
+      <article #card class="stage" [class.current]="active()===i" [id]="ids[i]">
+        @switch (i) {
+          @case (0) { <figure class="picture"><img src="assets/project-before.webp" width="1585" height="992" [alt]="step.alt" loading="lazy"><figcaption>{{ bs() ? 'Krov prije ugradnje · AI ilustracija' : 'Roof before installation · AI illustration' }}</figcaption></figure> }
+          @case (1) {
+            <figure class="plan">
+              <div class="visual-label"><span>{{ bs() ? 'Primjer nacrta' : 'Example roof plan' }}</span><strong>10 × 470 Wp</strong></div>
+              <svg viewBox="0 0 440 238" role="img" [attr.aria-label]="step.alt">
+                <defs><pattern id="roof-hatch" width="7" height="7" patternUnits="userSpaceOnUse" patternTransform="rotate(40)"><path d="M0 0V7" stroke="#8c9a7f" stroke-width=".7"/></pattern></defs>
+                <g class="outline" fill="none" stroke="#50694c" stroke-width="1.5">
+                  <path fill="#f2f2df" d="M52 28H382V216H52Z"/><path d="M52 102H382M60 36H374V208H60Z"/>
+                  <path fill="url(#roof-hatch)" d="M65 41H369V95H65Z"/><path fill="#d4d7bc" d="M328 127H353V151H328ZM331 130H350V148H331Z"/>
+                  <path stroke-dasharray="4 4" stroke-width=".8" d="M77 108H318V205H77Z"/>
+                  <path d="M52 19H382M52 14V23M382 14V23M392 28V216M388 28H398M388 216H398"/>
+                </g>
+                @for (m of modules; track $index; let n=$index) {
+                  <g [attr.transform]="'translate('+m.x+' '+m.y+')'"><g class="plan-module" [style.--delay]="n*40+'ms'"><rect width="31" height="43" rx="1.5" fill="#496744" stroke="#283e2c"/><path d="M10 2V41M21 2V41M2 11H29M2 22H29M2 32H29" stroke="#bccc9d" fill="none" stroke-width=".65"/></g></g>
+                }
+              </svg>
+              <figcaption><i aria-hidden="true"></i>{{ bs() ? 'Polje solarnih panela' : 'Solar panel array' }}</figcaption>
+            </figure>
+          }
+          @case (2) { <app-roof-details [language]="language()" [alt]="step.alt" /> }
+          @case (3) {
+            <div class="monitor">
+              <div class="visual-label"><span>{{ bs() ? 'Primjer dnevne proizvodnje' : 'Example day of generation' }}</span><strong>{{ bs() ? '4,7' : '4.7' }} kWp</strong></div>
+              <div class="meter"><strong>{{ reading().kw }}</strong><span>kW</span><time>{{ reading().time }}</time></div>
+              <svg viewBox="0 0 435 143" preserveAspectRatio="none" aria-hidden="true">
+                <defs><linearGradient id="power-fill" x1="0" y1="0" x2="0" y2="1" gradientUnits="objectBoundingBox"><stop stop-color="#e3f292" stop-opacity=".36"/><stop offset="1" stop-color="#e3f292" stop-opacity="0"/></linearGradient></defs>
+                <path d="M14 28H420M14 78H420M14 128H420" stroke="#ffffff30" fill="none" stroke-dasharray="3 5"/>
+                <path [attr.d]="curve+' L420 128H14Z'" fill="url(#power-fill)"/>
+                <path class="power-stroke" [attr.d]="curve" pathLength="1" fill="none" stroke="#e1efaf" stroke-width="2.6" stroke-linejoin="round"/>
+                <path [attr.d]="'M'+reading().x+' 14V128'" stroke="#fff" stroke-opacity=".64" stroke-dasharray="3 3"/>
+                <circle [attr.cx]="reading().x" [attr.cy]="reading().y" r="4.8" fill="#e8f3ab" stroke="#26382b" stroke-width="2"/>
+              </svg>
+              <label class="time-control"><span>{{ bs() ? 'Sat u danu' : 'Time of day' }}</span><input #time type="range" min="0" max="14" step="1" [value]="hourIndex()" (input)="hourIndex.set(time.valueAsNumber)" [attr.aria-valuetext]="reading().time+' · '+reading().kw+' kW'"></label>
+            </div>
+          }
+        }
+        <div class="stage-copy"><span aria-hidden="true">0{{ i+1 }} / 04</span><div><h3>{{ step.title }}</h3><p>{{ step.text }}</p></div></div>
+      </article>
+    }
+  </div>
+</div>
