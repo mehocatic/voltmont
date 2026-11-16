@@ -15,7 +15,13 @@
     </div>
   </section>
 
-
+  <section class="process section" id="process" aria-labelledby="process-heading">
+    <div class="shell">
+      <div class="section-top" data-reveal><span class="eyebrow">02 / {{ t().processTag }}</span><span class="section-index">VOLTMONT</span></div>
+      <div class="intro-grid" data-reveal><h2 id="process-heading">{{ t().processTitle }}</h2><p class="intro-copy">{{ t().processIntro }}</p></div>
+      <app-installation-story [language]="language()" />
+    </div>
+  </section>
 
   <section class="projects section" id="projects" aria-labelledby="projects-heading">
     <div class="shell">

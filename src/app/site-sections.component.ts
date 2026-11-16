@@ -1,5 +1,6 @@
 import { AfterViewInit, Component, ElementRef, OnDestroy, computed, inject, input, signal } from '@angular/core';
 import { EnergyFlowComponent } from './energy-flow.component';
+import { InstallationStoryComponent } from './installation-story.component';
 import { SolarCalculatorComponent } from './solar-calculator.component';
 import { GUIDE_COPY } from './section-copy';
 import { CONTACT_EMAIL } from './contact';
@@ -7,7 +8,7 @@ import { CONTACT_EMAIL } from './contact';
 @Component({
   selector: 'app-site-sections',
   standalone: true,
-  imports: [SolarCalculatorComponent, EnergyFlowComponent],
+  imports: [InstallationStoryComponent, SolarCalculatorComponent, EnergyFlowComponent],
   templateUrl: './site-sections.component.html',
   styleUrl: './site-sections.component.css',
 })
