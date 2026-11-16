@@ -3,7 +3,23 @@
 
 
 
-
+  <section class="projects section" id="projects" aria-labelledby="projects-heading">
+    <div class="shell">
+      <div class="section-top" data-reveal><span class="eyebrow">03 / {{ t().projectsTag }}</span><span class="section-index">{{ t().before }} / {{ t().after }}</span></div>
+      <div class="intro-grid" data-reveal><h2 id="projects-heading">{{ t().projectsTitle }}</h2><p class="intro-copy">{{ t().projectsIntro }}</p></div>
+      <figure class="project-figure" data-reveal>
+        <div class="comparison" [style.--comparison]="comparison() + '%'">
+          <img class="comparison-after" src="assets/project-after.webp" loading="lazy" width="1584" height="992" [alt]="t().photoAlt">
+          <img class="comparison-before" src="assets/project-before.webp" loading="lazy" width="1584" height="992" [style.clip-path]="'inset(0 ' + (100 - comparison()) + '% 0 0)'" [alt]="language() === 'bs' ? 'Ista kuća prije postavljanja panela' : 'The identical house before solar panels'">
+          <span class="image-label label-before">{{ t().before }}</span><span class="image-label label-after">{{ t().after }}</span>
+          <span class="comparison-divider" aria-hidden="true"><span>‹ ›</span></span>
+          <input type="range" min="0" max="100" step="1" [value]="comparison()" (input)="updateComparison($event)" [attr.aria-label]="t().compareLabel" [attr.aria-valuetext]="comparison() + '% ' + t().before">
+        </div>
+        <div class="comparison-controls"><span>{{ t().compareHint }}</span><span aria-hidden="true">← →</span></div>
+        <figcaption class="project-caption"><div><h3>{{ t().projectName }}</h3><p>{{ t().projectNote }}</p></div><span class="concept-label">{{ t().illustrative }}</span></figcaption>
+      </figure>
+    </div>
+  </section>
 
   <section class="about section" id="about" aria-labelledby="about-heading">
     <div class="shell about-layout">
