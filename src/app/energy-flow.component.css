@@ -60,3 +60,14 @@ button:focus-visible{outline:2px solid #ddefa2;outline-offset:3px}
 @keyframes conduct{to{stroke-dashoffset:-30}}
 @keyframes charge{0%,100%{transform:scaleY(.4)}50%{transform:scaleY(1)}}
 @keyframes signal-glow{50%{box-shadow:0 0 0 8px #e0ef9e10}}
+@media(max-width:900px){.flow-copy{padding:26px}.flow-text h3{font-size:30px}.home-scene{min-height:380px}.hardware{width:74px;height:74px}.equipment{top:26px;width:120px}.equipment strong{font-size:12px}.hardware svg{width:42px}}
+@media(max-width:680px){
+  .flow-experience{grid-template-columns:minmax(0,1fr);border-radius:17px}
+  .home-scene{min-height:240px}.home-scene img{object-position:53% 44%}.scene-caption{left:21px;bottom:25px}.scene-caption strong{font-size:27px}.scene-phase{left:16px;top:16px;width:35px;height:35px;font-size:21px}
+  .flow-copy{padding:24px 22px}.time-switch{margin-bottom:20px}.flow-text h3{font-size:32px}.flow-text p{font-size:14px}.battery-switch{margin-top:18px}
+  .power-map{height:280px}.desktop-wiring{display:none}.mobile-wiring{display:block}
+  .equipment{width:31%;top:18px}.solar-equipment{left:16.7%}.inverter-equipment{left:50%}.home-equipment{left:83.3%}.battery-equipment{left:33.3%;top:181px}.grid-equipment{left:66.7%;top:181px}
+  .hardware{width:60px;height:60px;margin-bottom:9px}.hardware svg{width:35px;height:33px}.hardware i{top:1px;right:3px;width:6px;height:6px;box-shadow:0 0 0 3px #243d2f}.hardware:before{inset:3px}
+  .equipment strong{font-size:12px}.equipment>span{font-size:10px;padding:0 3px}.flow-footer{grid-template-columns:1fr;gap:12px;padding:18px 22px}
+}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{transition:none!important;animation:none!important}}
