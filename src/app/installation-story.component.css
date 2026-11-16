@@ -42,3 +42,15 @@
 .stage-copy h3{font-size:clamp(24px,2.45vw,38px);line-height:1.14;letter-spacing:-.05em;font-weight:500}
 .stage-copy p{color:#4f6154;font-size:15px;line-height:1.6;max-width:620px;margin-top:10px}
 :is(a,input):focus-visible{outline:2px solid currentColor;outline-offset:3px}
+@media(max-width:760px){
+  .journey{display:block}
+  .chapters{z-index:3;top:84px;grid-template-columns:repeat(4,minmax(0,1fr));background:#f4f4ed;padding:6px 0 0;border:0;margin-bottom:17px}
+  .chapters a{flex-direction:column;justify-content:center;align-items:center;gap:6px;padding:5px 1px 10px;text-align:center}
+  .number{width:26px;height:26px;font-size:10px}.nav-title{font-size:clamp(10px,2.8vw,13px);letter-spacing:-.025em}.nav-arrow{display:none}
+  .stage{scroll-margin-top:157px}.stage+.stage{padding-top:0;margin-top:35px}
+  .picture,.plan,.monitor{aspect-ratio:1.51}.stage-copy{gap:13px;padding-top:16px}.stage-copy>span{font-size:9px}
+  .stage-copy h3{font-size:25px}.stage-copy p{font-size:14px;margin-top:8px}
+  .picture figcaption{font-size:10px;left:10px;bottom:10px}.visual-label{font-size:11px}.plan .visual-label{padding:14px 15px 0}.plan figcaption{padding:0 15px 10px;font-size:10px}
+  .monitor{padding:16px}.meter{margin-top:10px}.time-control{font-size:11px}
+}
+@media(prefers-reduced-motion:reduce){*,*:after{animation:none!important;transition:none!important}}
