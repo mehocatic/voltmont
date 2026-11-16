@@ -1,0 +1,55 @@
+<div class="calculator">
+  <div class="calculator-grid">
+    <div class="reading" aria-live="polite" aria-atomic="true">
+      <img src="assets/solar-glass.webp" width="1200" height="800" loading="lazy" alt="">
+      <div class="reading-content">
+        <p class="reading-label"><span class="sunring" aria-hidden="true">☀</span>{{ copy().production }}</p>
+        <p class="annual"><strong>{{ num(result().production) }}</strong> <span>kWh</span></p>
+        <div class="ratio-line" aria-hidden="true"><i [style.width.%]="100 * result().production / (result().production > result().demand ? result().production : result().demand)"></i></div>
+        <div class="annual-demand"><span>{{ copy().demand }}</span><strong>{{ num(result().demand) }} kWh</strong></div>
+      </div>
+    </div>
+    <div class="controls">
+      <h3>{{ copy().inputs }}</h3>
+      <div class="field">
+        <label for="monthly-use">{{ copy().monthly }}</label>
+        <div class="range-value">{{ num(monthly()) }} <small>kWh</small></div>
+        <input #use id="monthly-use" type="range" min="100" max="1500" step="10" [value]="monthly()" [style.--fill]="(monthly()-100)/14+'%'" [attr.aria-valuetext]="num(monthly())+' kWh'" (input)="monthly.set(use.valueAsNumber)">
+      </div>
+      <div class="field">
+        <label for="usable-area">{{ copy().area }}</label>
+        <div class="range-value">{{ num(area()) }} <small>m²</small></div>
+        <input #roof id="usable-area" type="range" min="0" max="100" step="1" [value]="area()" [style.--fill]="area()+'%'" [attr.aria-valuetext]="num(area())+' m²'" (input)="area.set(roof.valueAsNumber)">
+      </div>
+      <div class="region"><label for="yield-region">{{ copy().region }}</label>
+        <select #region id="yield-region" [value]="yieldPerKwp()" (change)="yieldPerKwp.set(+region.value)">
+          <option value="1200">{{ copy().inland }}</option><option value="1400">{{ copy().south }}</option>
+        </select>
+      </div>
+    </div>
+    <div class="recommendation" aria-live="polite" aria-atomic="true">
+      @if (result().count > 0) {
+        <div class="model">
+          <span class="kicker">{{ copy().result }}</span>
+          <h4>{{ result().count }} × {{ result().model.name }}</h4>
+          <p>{{ result().model.code }} · {{ result().model.watts }} Wp {{ copy().unit }}</p>
+        </div>
+        <div class="sizing"><div><span>{{ copy().system }}</span><strong>{{ num(result().kwp, 2) }} kWp</strong></div><div><span>{{ copy().footprint }}</span><strong>{{ num(result().footprint, 1) }} m²</strong></div></div>
+        <div class="reason"><p>{{ result().roofLimited ? copy().limited : copy().near }}</p><a [href]="result().model.specs" target="_blank" rel="noopener">{{ copy().spec }} ↗</a></div>
+      } @else {
+        <div class="empty"><h4>{{ copy().none }}</h4><p>{{ copy().noneText }}</p></div>
+      }
+    </div>
+  </div>
+  @if (result().count > 0) {
+    <app-system-enquiry [language]="language()" [monthly]="num(monthly())" [area]="num(area())"
+      [region]="yieldPerKwp() === 1400 ? copy().south : copy().inland"
+      [panels]="result().count + ' × ' + result().model.name + ' (' + result().model.code + ')'"
+      [capacity]="num(result().kwp, 2)" [production]="num(result().production)" />
+  }
+  <details class="method"><summary>{{ copy().how }} <span aria-hidden="true">+</span></summary>
+    <div><p>{{ copy().method }}</p><p>{{ copy().basis }} <strong>{{ num(yieldPerKwp()) }} kWh/kWp.</strong> {{ copy().limits }}</p>
+      <a href="https://energy.danube-region.eu/wp-content/uploads/sites/6/2022/05/Energy-Performance-of-Buildings-in-Danube-Region_final.pdf#page=40" target="_blank" rel="noopener">{{ copy().source }} ↗</a><small>{{ copy().photo }}</small>
+    </div>
+  </details>
+</div>

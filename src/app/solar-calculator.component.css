@@ -1,0 +1,48 @@
+:host{display:block}
+.calculator-grid{display:grid;grid-template-columns:minmax(0,1.37fr) minmax(310px,.83fr);border-radius:22px;overflow:hidden;background:#e9eddd;color:#182d25}
+.reading{position:relative;display:flex;align-items:flex-end;isolation:isolate;min-height:354px;background:#202721;color:white}
+.reading img,.reading::after{position:absolute;inset:0;width:100%;height:100%;z-index:-1}
+.reading img{object-fit:cover;object-position:60% 48%}
+.reading::after{content:"";background:linear-gradient(0deg,#0b1917ed,rgba(12,22,21,.38) 55%,transparent 85%)}
+.reading-content{width:100%;padding:clamp(24px,3.25vw,50px)}
+.reading-label{font-size:14px;display:flex;align-items:center;gap:10px;color:#f3f5de}
+.sunring{color:#dfef9e;font-size:22px;line-height:1}
+.annual{line-height:.98;letter-spacing:-.07em;margin:18px 0 28px;font-variant-numeric:tabular-nums}
+.annual strong{font-size:clamp(60px,7.6vw,116px);font-weight:500}
+.annual>span{font-size:clamp(25px,2.8vw,45px);font-weight:400;letter-spacing:-.06em;color:#e3eca7;margin-left:.1em}
+.ratio-line{height:4px;background:#ffffff38;border-radius:4px;overflow:hidden}
+.ratio-line i{display:block;height:100%;background:#d7e99c;transition:width .35s ease}
+.annual-demand{display:flex;justify-content:space-between;gap:12px;font-size:12px;margin-top:12px;color:#edf0e5}
+.annual-demand strong{font-weight:500}
+.controls{padding:clamp(24px,3.1vw,46px);display:flex;flex-direction:column;justify-content:center}
+.controls h3{font-size:clamp(26px,2.3vw,36px);font-weight:500;letter-spacing:-.05em;margin-bottom:22px}
+.field{position:relative;display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:baseline;gap:5px 10px}
+.field+.field{margin-top:16px}
+.controls label{font-size:14px;font-weight:550}
+.range-value{font-size:22px;white-space:nowrap;letter-spacing:-.045em;font-variant-numeric:tabular-nums}
+.range-value small{font-size:13px;color:#516051}
+.field input{grid-column:1/-1;appearance:none;background:transparent;width:100%;height:30px;cursor:pointer;margin:0;accent-color:#274b37}
+.field input::-webkit-slider-runnable-track{height:4px;border-radius:3px;background:linear-gradient(to right,#34573b var(--fill),#c2cbb8 var(--fill))}
+.field input::-moz-range-track{height:4px;border-radius:3px;background:#c2cbb8}
+.field input::-moz-range-progress{background:#34573b;height:4px}
+.field input::-webkit-slider-thumb{appearance:none;height:20px;width:20px;margin-top:-8px;border-radius:100%;background:#e2f0ac;border:4px solid #294836;box-shadow:0 1px 4px #193a2326}
+.field input::-moz-range-thumb{height:12px;width:12px;border-radius:100%;background:#e2f0ac;border:4px solid #294836}
+.region{display:grid;gap:7px;margin-top:16px}
+.region select{color:#1c3227;font:inherit;font-size:14px;padding:9px 12px;min-height:42px;max-width:100%;border:1px solid #b4bfa9;background:#f4f6ed;border-radius:7px}
+.recommendation{grid-column:1/-1;background:#243c32;color:#eff5e7;display:grid;grid-template-columns:1.05fr .85fr 1fr;align-items:center;gap:26px;padding:28px clamp(24px,3.2vw,48px);border:1px solid #ffffff1a;border-top:0;border-radius:0 0 22px 22px}
+.kicker,.sizing span{display:block;font-size:12px;color:#c0d0bf}
+.model h4,.empty h4{font-size:clamp(23px,2.05vw,33px);letter-spacing:-.05em;font-weight:500;line-height:1.12;margin:8px 0}
+.model p{font-size:12px;color:#c4d0c3}
+.sizing{display:flex;gap:clamp(16px,2.5vw,42px)}
+.sizing strong{display:block;font-size:clamp(18px,1.65vw,25px);font-weight:500;letter-spacing:-.045em;white-space:nowrap;margin-top:7px}
+.reason p,.empty p{font-size:13px;color:#d8e2d5;line-height:1.45}
+.reason a,.method a{display:inline-block;color:#e0eda9;font-size:12px;padding-block:6px;text-decoration:underline;text-underline-offset:4px}
+.empty{grid-column:1/-1}
+.method{margin-top:12px;border-bottom:1px solid #ffffff2e;color:#d5e1d1;font-size:13px}
+.method summary{display:flex;justify-content:space-between;align-items:center;cursor:pointer;min-height:44px;list-style:none}
+.method summary::-webkit-details-marker{display:none}
+.method summary span{font-size:22px;transition:transform .2s}
+.method[open] summary span{transform:rotate(45deg)}
+.method>div{max-width:830px;padding:4px 0 20px;line-height:1.65}
+.method p+p{margin-top:8px}.method small{display:block;color:#b4c6b7;font-size:11px}
+:is(input,select,a,summary):focus-visible{outline:2px solid currentColor;outline-offset:3px}
