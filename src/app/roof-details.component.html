@@ -1,0 +1,34 @@
+<figure>
+  <div class="photo">
+    <img loading="lazy" src="assets/installation.webp" width="1448" height="1086" [alt]="alt()">
+    <div class="pins" role="group" [attr.aria-label]="bs() ? 'Detalji ugradnje' : 'Installation details'">
+      @for (point of parts; track $index; let i = $index) {
+        <button type="button" class="pin" [style.left.%]="point.x" [style.top.%]="point.y"
+          [attr.aria-label]="point[language()][0]" [attr.title]="point[language()][0]"
+          [attr.aria-pressed]="selected() === i" aria-controls="roof-detail" (click)="selected.set(i)">
+          <span aria-hidden="true">0{{ i+1 }}</span>
+        </button>
+      }
+    </div>
+    <span class="credit">{{ bs() ? 'AI ilustracija' : 'AI illustration' }}</span>
+  </div>
+  <figcaption id="roof-detail" aria-live="polite" aria-atomic="true">
+    <div class="detail-image" aria-hidden="true">
+      @if (selected() !== 2) {
+        <img loading="lazy" src="assets/installation.webp" alt=""
+          [style.transform]="'translate(-' + part().x + '%, -' + part().y + '%)'">
+      } @else {
+        <svg viewBox="0 0 160 110" fill="none">
+          <rect x="14" y="12" width="102" height="65" rx="3" stroke="#d2e2b6"/>
+          <rect x="19" y="17" width="92" height="55" rx="2" stroke="#687f6a"/>
+          <rect x="56" y="41" width="23" height="13" rx="2" fill="#bed489"/>
+          <path d="M62 54v27q0 7 7 7h55m-52-34v23q0 6 6 6h46" stroke="#deeda6" stroke-width="2"/>
+          <rect x="124" y="74" width="21" height="24" rx="3" stroke="#c9daa8"/><path d="M129 81h11m-11 5h8" stroke="#c9daa8"/>
+        </svg>
+      }
+    </div>
+    <div class="description"><small>{{ selected() === 2 ? (bs() ? 'Shema ispod panela' : 'Under-panel diagram') : (bs() ? 'Uvećani detalj' : 'Close-up') }} · 0{{ selected()+1 }} / 03</small>
+      <h4>{{ part()[language()][0] }}</h4><p>{{ part()[language()][1] }}</p>
+    </div>
+  </figcaption>
+</figure>
