@@ -10,3 +10,14 @@ Na prikazu toka energije moguće je promijeniti doba dana i uključiti bateriju 
 - **WebGL 2** iscrtava maglu na naslovnoj sceni. Kada WebGL nije dostupan ili korisnik odabere smanjeno kretanje, jutarnji i noćni prikaz mijenjaju se odmah.
 - **HTML, CSS i SVG** oblikuju mobilni meni, raspored panela i dijagram toka energije. Fotografije u sekcijama nalaze se u `public/assets/` u formatu WebP. Naslovna scena učitava slike s vanjskog servisa.
 - **Angular CLI i npm** služe za lokalni razvoj i izgradnju statičke verzije. Kalkulator radi u pregledniku.
+
+## Lokalno pokretanje
+
+Potreban je Node.js 22.12 ili noviji iz serije 22, ili Node.js 24, uz npm. Iz korijenskog direktorija projekta pokrenite:
+
+```sh
+npm ci
+npm start
+```
+
+Otvorite [lokalnu aplikaciju](http://127.0.0.1:4200). Za produkcijsku verziju pokrenite `npm run build` i na statički hosting prenesite sadržaj direktorija `dist/`.
