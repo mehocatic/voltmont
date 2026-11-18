@@ -30,4 +30,4 @@ Na primjer, za 450 kWh mjesečno, 35 m² slobodnog krova i prinos od 1.200 kWh p
 
 ## Kontakt
 
-Probna adresa je `kontakt@voltmont.example`. Obrazac prikazuje tekst upita i može ga otvoriti kao nacrt u aplikaciji za e-mail. Za prijem upita na službenu adresu postavite vrijednost `CONTACT_EMAIL` u `src/app/contact.ts` i ažurirajte napomenu o demo kontaktu u obje jezičke verzije.
+Kontakt adresa je `kontakt@voltmont.com`. Obrazac prikazuje tekst upita i može ga otvoriti kao nacrt u aplikaciji za e-mail. Adresa se podešava kroz vrijednost `CONTACT_EMAIL` u `src/app/contact.ts`.
