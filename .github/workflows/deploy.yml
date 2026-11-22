@@ -1,0 +1,48 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      # base-href jer stranica živi na /solar-website/, ne na korijenu domene
+      - run: npx ng build --base-href /solar-website/
+      # Pronađi izlazni folder (ime projekta u dist/ može biti različito)
+      # i kopiraj index.html u 404.html da Angular rute rade na refreshu
+      - name: Find output and add SPA fallback
+        run: |
+          OUT=$(dirname "$(find dist -name index.html | head -n 1)")
+          echo "OUT=$OUT" >> "$GITHUB_ENV"
+          cp "$OUT/index.html" "$OUT/404.html"
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: ${{ env.OUT }}
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
