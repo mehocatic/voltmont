@@ -25,7 +25,7 @@ jobs:
           cache: npm
       - run: npm ci
       # base-href jer stranica živi na /solar-website/, ne na korijenu domene
-      - run: npx ng build --base-href /solar-website/
+      - run: npx ng build --base-href /${{ github.event.repository.name }}/
       # Pronađi izlazni folder (ime projekta u dist/ može biti različito)
       # i kopiraj index.html u 404.html da Angular rute rade na refreshu
       - name: Find output and add SPA fallback
