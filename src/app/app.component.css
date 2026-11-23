@@ -142,18 +142,44 @@ h1 .l2{color:color-mix(in srgb,#30472f calc((1 - var(--k))*100%),#e4efc5)}
   align-items:center
 }
 .toggle{
+  --track-padding:calc(2*var(--u));
+  --track-gap:0px;
+  --leading-edge:420ms cubic-bezier(.22,.72,.25,1);
+  --trailing-edge:470ms cubic-bezier(.38,0,.25,1) 35ms;
+  --start-edge:var(--leading-edge);
+  --end-edge:var(--trailing-edge);
+  --active-start:var(--track-padding);
+  --active-end:calc(50% + var(--track-gap)/2);
   position:relative;
   display:grid;
   grid-template-columns:1fr 1fr;
   width:calc(524*var(--u));
   height:calc(86*var(--u));
-  padding:calc(2*var(--u));
+  padding:var(--track-padding);
+  gap:var(--track-gap);
   border-radius:calc(16*var(--u));
   overflow:hidden;
   background:rgba(120,132,140,.34);
   border:1px solid rgba(255,255,255,.2);
   -webkit-backdrop-filter:blur(calc(14*var(--u)));
   backdrop-filter:blur(calc(14*var(--u)))
+}
+.toggle:has(#bn[aria-pressed="true"]){
+  --active-start:calc(50% + var(--track-gap)/2);
+  --active-end:var(--track-padding);
+  --start-edge:var(--trailing-edge);
+  --end-edge:var(--leading-edge);
+}
+.toggle::before{
+  content:"";
+  position:absolute;
+  inset-block:var(--track-padding);
+  inset-inline:var(--active-start) var(--active-end);
+  border-radius:calc(13*var(--u));
+  background:linear-gradient(155deg,#f5f8de,#ddec9e 70%,#d2e796);
+  box-shadow:inset 0 0 calc(18*var(--u)) rgba(255,255,255,.55);
+  transition:inset-inline-start var(--start-edge),inset-inline-end var(--end-edge);
+  pointer-events:none;
 }
 .toggle button{
   position:relative;
@@ -164,20 +190,10 @@ h1 .l2{color:color-mix(in srgb,#30472f calc((1 - var(--k))*100%),#e4efc5)}
   gap:calc(3*var(--u));
   border-radius:calc(13*var(--u));
   color:#fff;
-  overflow:hidden
+  transition:color 140ms ease 105ms;
 }
-.toggle button:before{
-  content:"";
-  position:absolute;
-  inset:0;
-  border-radius:inherit;
-  background:linear-gradient(160deg,#f7f8dc,#e2ee9f 90%);
-  box-shadow:inset 0 0 calc(18*var(--u)) rgba(255,255,255,.65);
-  opacity:var(--on)
-}
-.toggle b,.toggle small{
-  position:relative;
-  color:color-mix(in srgb,#1c2316 calc(var(--on)*100%),#fff)
+.toggle button[aria-pressed="true"]{
+  color:#1c2316;
 }
 .toggle b{
   font-size:calc(23*var(--u));
@@ -189,11 +205,9 @@ h1 .l2{color:color-mix(in srgb,#30472f calc((1 - var(--k))*100%),#e4efc5)}
   opacity:.72
 }
 .toggle button:focus-visible{
-  outline:2px solid #fff;
+  outline:2px solid currentColor;
   outline-offset:-4px
 }
-#bm{--on:calc(1 - var(--k))}
-#bn{--on:var(--k)}
 .cap{
   margin-top:calc(22*var(--u));
   text-align:center;
@@ -241,13 +255,19 @@ h1 .l2{color:color-mix(in srgb,#30472f calc((1 - var(--k))*100%),#e4efc5)}
     padding:0 16px max(24px,env(safe-area-inset-bottom))
   }
   .toggle{
+    --track-padding:3px;
+    --track-gap:3px;
     width:100%;
     max-width:440px;
     height:auto;
     grid-template-columns:minmax(0,1fr);
-    gap:3px;
-    padding:3px;
+    grid-auto-rows:1fr;
     background:rgba(21,37,40,.58);
+  }
+  .toggle::before{
+    inset-inline:var(--track-padding);
+    inset-block:var(--active-start) var(--active-end);
+    transition:inset-block-start var(--start-edge),inset-block-end var(--end-edge);
   }
   .toggle button{min-height:58px;padding:8px 12px}
   .toggle b{font-size:19px}
@@ -257,4 +277,8 @@ h1 .l2{color:color-mix(in srgb,#30472f calc((1 - var(--k))*100%),#e4efc5)}
     font-size:15px;
     max-width:360px;
   }
+}
+
+@media(prefers-reduced-motion:reduce){
+  .toggle::before,.toggle button{transition:none}
 }
