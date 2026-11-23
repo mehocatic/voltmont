@@ -1,7 +1,7 @@
 <div class="story">
   <section class="energy section" id="how-it-works" aria-labelledby="energy-heading">
     <div class="shell">
-      <div class="section-top" data-reveal><span class="eyebrow">01 / {{ t().energyTag }}</span><span class="small-orbit" aria-hidden="true">✳</span></div>
+      <div class="section-top" data-reveal><span class="eyebrow">01 / {{ t().energyTag }}</span><img src="assets/voltmont-mark.svg" width="33" height="33" alt="" loading="lazy"></div>
       <div class="intro-grid energy-intro">
         <h2 id="energy-heading">{{ showFlow() ? t().flowTitle : t().energyTitle }}</h2>
         <p class="intro-copy">{{ showFlow() ? t().flowIntro : t().energyIntro }}</p>
@@ -62,7 +62,7 @@
     <div class="shell" data-reveal>
       <span class="eyebrow">06 / {{ t().contactTag }}</span>
       <div class="contact-layout"><h2 id="contact-heading">{{ t().contactTitle }}</h2><div class="contact-copy"><p>{{ t().contactText }}</p><a class="email-link" [href]="mailto()">{{ t().email }} <span aria-hidden="true">↗</span></a><a class="email-address" [href]="mailto()">{{ emailAddress }}</a></div></div>
-      <div class="footer"><a class="footer-logo" href="#home"><span aria-hidden="true">✳</span> Voltmont</a><p>{{ t().region }}<br>{{ t().rights }}</p><a class="back-top" href="#home">{{ t().top }} ↑</a></div>
+      <div class="footer"><a class="footer-logo" href="#home"><img src="assets/voltmont-mark.svg" width="34" height="34" alt="" loading="lazy">Voltmont</a><p>{{ t().region }}<br>{{ t().rights }}</p><a class="back-top" href="#home">{{ t().top }} ↑</a></div>
     </div>
   </section>
 </div>

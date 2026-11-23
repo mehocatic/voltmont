@@ -16,7 +16,6 @@ button:focus-visible,a:focus-visible,summary:focus-visible,input:focus-visible{o
 .energy:before{content:"";position:absolute;top:0;left:0;right:0;height:72px;background:linear-gradient(#0b1426,transparent);pointer-events:none}
 .energy .section-top{border-color:#ffffff27}
 .energy .intro-copy{color:#c2cfc5}
-.small-orbit{font-size:33px;color:var(--accent);line-height:1}
 #flow-view[hidden],#estimate-view[hidden]{display:none}
 .energy .energy-intro{margin-bottom:24px}
 .energy-choices{display:inline-flex;gap:4px;border:1px solid #75907b70;padding:4px;border-radius:99px;margin-bottom:20px}
@@ -70,8 +69,7 @@ button:focus-visible,a:focus-visible,summary:focus-visible,input:focus-visible{o
 .email-address{display:inline-block;font-size:15px}
 .contact-copy small{display:block;font-size:11px;color:#4e613e;line-height:1.5;margin-top:15px;max-width:350px}
 .footer{border-top:1px solid #aabb7e;display:flex;align-items:center;justify-content:space-between;gap:35px;padding-top:30px}
-.footer-logo{font-size:25px;letter-spacing:-.04em;font-weight:500;white-space:nowrap}
-.footer-logo>span{font-size:34px;vertical-align:middle;margin-right:8px}
+.footer-logo{display:inline-flex;align-items:center;gap:8px;font-size:25px;letter-spacing:-.04em;font-weight:500;white-space:nowrap}
 .footer p{font-size:11px;line-height:1.6;color:#4f603f}
 .back-top{font-size:12px;white-space:nowrap}
 .will-reveal{opacity:0;transform:translate3d(0,24px,0);transition:opacity .8s ease,transform .8s cubic-bezier(.2,.65,.3,1)}

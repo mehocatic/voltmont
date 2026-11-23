@@ -1,12 +1,12 @@
 <header class="mobile-header">
-  <a class="mobile-brand" href="#home" aria-label="Voltmont"><span aria-hidden="true">✳</span>Voltmont</a>
+  <a class="mobile-brand" href="#home"><img src="assets/voltmont-mark.svg" width="32" height="32" alt="">Voltmont</a>
   <button class="menu-trigger" type="button" (click)="show()" aria-controls="mobile-menu" [attr.aria-expanded]="open()" [attr.aria-label]="bs() ? 'Otvori meni' : 'Open menu'">
     <span class="burger" aria-hidden="true"><i></i><i></i></span>
   </button>
 </header>
 <dialog #menu id="mobile-menu" [attr.aria-label]="bs() ? 'Navigacija' : 'Navigation'" (close)="restore()">
   <div class="menu-top">
-    <a class="mobile-brand" href="#home" (click)="close()"><span aria-hidden="true">✳</span>Voltmont</a>
+    <a class="mobile-brand" href="#home" (click)="close()"><img src="assets/voltmont-mark.svg" width="32" height="32" alt="">Voltmont</a>
     <button class="menu-trigger dismiss" type="button" (click)="close()" [attr.aria-label]="bs() ? 'Zatvori meni' : 'Close menu'"><span class="burger" aria-hidden="true"><i></i><i></i></span></button>
   </div>
   <nav [attr.aria-label]="bs() ? 'Glavna navigacija' : 'Main navigation'">

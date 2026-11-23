@@ -156,7 +156,7 @@ export class AppComponent implements AfterViewInit, OnDestroy {
   }
 
   private prepareImages(): void {
-    const images = Array.from(this.hero.nativeElement.querySelectorAll<HTMLImageElement>('img'));
+    const images = Array.from(this.hero.nativeElement.querySelectorAll<HTMLImageElement>('.layer img'));
     const promises = new Map<HTMLImageElement, Promise<boolean>>();
     for (const image of images) {
       const loaded = image.complete
